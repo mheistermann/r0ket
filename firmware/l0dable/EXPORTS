@@ -19,6 +19,8 @@ lcdNl
 lcdPrint
 lcdPrintInt
 lcdPrintIntHex
+lcdPrintCharHex
+lcdPrintShortHex
 lcdPrintln
 lcdRefresh
 lcdSetPixel
