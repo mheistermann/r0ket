@@ -24,6 +24,7 @@ LIBS += usb/libusb.a
 LIBS += funk/libfunk.a
 LIBS += usbcdc/libusbcdc.a
 LIBS += flame/libflame.a
+LIBS += enc28j60/enc28j60.a
 
 ##########################################################################
 # GNU GCC compiler flags
@@ -55,6 +56,7 @@ LDLIBS += -Lusb -lusb
 LDLIBS += -lbasic
 LDLIBS += -lfunk
 LDLIBS += -Lflame -lflame
+LDLIBS += -Lenc28j60 -lenc28j60
 OCFLAGS = --strip-unneeded
 
 SUBDIRS?= $(foreach lib,$(LIBS),$(dir $(lib)))
