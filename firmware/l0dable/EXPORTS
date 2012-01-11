@@ -127,17 +127,23 @@ flameSetBrightness
 flameSetColor
 flameClaim
 flameFree
-o_init
-o_path_new
-o_move_to
-o_line_to
-o_curve_to
-o_close
-o_set_gray
-o_fill
-o_set_shader
-o_identity
-o_transform
+#o_init
+#o_path_new
+#o_move_to
+#o_line_to
+#o_curve_to
+#o_close
+#o_set_gray
+#o_fill
+#o_set_shader
+#o_identity
+#o_transform
 getrelease
 nrf_set_strength
+# enc28j60
+initMAC
+MACWrite
+MACRead
+ether_buf
+ether_len
 #Add stuff here
