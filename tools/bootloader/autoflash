@@ -22,6 +22,7 @@ while True:
     filelist = [x for x in filelist if x not in flashed]
     for file in filelist:
         try:
+            print "flashing %s..." % file
             firmware = open("firmware.bin", "r")
             dev = open("/dev/lpcflash/%s" % file, "w")
             dev.seek(0x800)
