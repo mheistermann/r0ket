@@ -6,8 +6,11 @@
 #include "basic/basic.h"
 #include "basic/config.h"
 
-#define PIN_DHT11    RB_SPI_SS2
-#define PIN_DHT11_IO IOCON_PIO2_8
+//#define PIN_DHT11    RB_SPI_SS2
+//#define PIN_DHT11_IO IOCON_PIO2_8
+
+#define PIN_DHT11    RB_SPI_SS5
+#define PIN_DHT11_IO IOCON_PIO2_10
 
 struct dht11_data {
     uint8_t humidity;
