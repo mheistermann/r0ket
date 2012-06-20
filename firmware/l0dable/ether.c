@@ -96,7 +96,7 @@ void udp() {
     uint8_t key;
 
     //memset(ether_buf, 0x42, ETHER_BUFSIZE);
-    ether_len = sizeof(p) + sizeof(key);
+    ether_len = sizeof(*p) + sizeof(key);
 
     memcpy(p->eth.dest, "\0foobar", 6);
     memcpy(&p->eth.src, "\0foobas", 6);
