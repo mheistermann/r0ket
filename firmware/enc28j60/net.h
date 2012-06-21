@@ -8,7 +8,11 @@
 #define UIP_PROTO_UDP   17
 #define UIP_PROTO_ICMP6 58
 
-#define HTONS(n) (uint16_t)((((uint16_t) (n)) << 8) | (((uint16_t) (n)) >> 8))
+#define HTONS16(n) (uint16_t)((((uint16_t) (n)) << 8) | (((uint16_t) (n)) >> 8))
+#define HTONS32(x) ((x & 0xFF000000)>>24) \
+                  |((x & 0x00FF0000)>>8)  \
+                  |((x & 0x0000FF00)<<8)  \
+                  |((x & 0x000000FF)<<24)
 
 struct __attribute__ ((packed)) eth_hdr {
   uint8_t dest[6];
@@ -26,8 +30,8 @@ struct __attribute__((packed)) ip_hdr {
          ttl,
          proto;
     uint16_t ipchksum;
-    uint16_t srcipaddr[2],
-          destipaddr[2];
+    uint32_t srcipaddr,
+          destipaddr;
 };
 
 struct __attribute__((packed)) udp_hdr {

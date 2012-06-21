@@ -98,9 +98,9 @@ void udp() {
     //memset(ether_buf, 0x42, ETHER_BUFSIZE);
     ether_len = sizeof(*p) + sizeof(key);
 
-    memcpy(p->eth.dest, "\0foobar", 6);
-    memcpy(&p->eth.src, "\0foobas", 6);
-    p->eth.type = HTONS(UIP_ETHTYPE_IP);
+    memcpy(&p->eth.dest, "\0foobr", 6);
+    memcpy(&p->eth.src, "\0foobs", 6);
+    p->eth.type = HTONS16(UIP_ETHTYPE_IP);
     p->ip.vhl = 0x45;
     p->ip.tos = 0;
     p->ip.len[0] = 0;
@@ -109,12 +109,12 @@ void udp() {
     p->ip.ipoffset[1] = 0;
     p->ip.ttl = 0xf0;
     p->ip.proto = UIP_PROTO_UDP;
-    memcpy(p->ip.srcipaddr, "AAAA", 4);
-    memcpy(p->ip.destipaddr, "BBBB", 4);
+    memcpy(&p->ip.srcipaddr, "AAAA", 4);
+    memcpy(&p->ip.destipaddr, "BBBB", 4);
 
     p->udp.srcport = 0xdead;
     p->udp.destport = 0xbeef;
-    p->udp.udplen = HTONS(sizeof(p->udp) + 1);
+    p->udp.udplen = HTONS16(sizeof(p->udp) + 1);
 
 
 
