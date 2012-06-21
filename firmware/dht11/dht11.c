@@ -21,9 +21,6 @@ void dht11_init(void) {
     gpioSetPullup(&PIN_DHT11_IO, gpioPullupMode_Inactive);
     gpioSetDir(PIN_DHT11, gpioDirection_Output);
     gpioSetValue(PIN_DHT11, 1);
-    // LCD
-    lcdClear();
-    lcdRefresh();
 }
 
 bool dht11_read_byte(uint8_t *out)
