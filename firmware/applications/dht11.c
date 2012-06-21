@@ -12,7 +12,8 @@
 #include "lcd/print.h"
 
 struct __attribute__((packed)) my_payload {
-    uint32_t id;
+    uint8_t proto_version;
+    uint32_t count;
     int8_t dht11_status;
     uint8_t temperature;
     uint8_t humidity;
@@ -93,7 +94,8 @@ void main_dht11(void) {
     p->udp.destport = 0xbeef;
     p->udp.udplen = HTONS16(udplen);
 
-    p->payload.id = 0;
+    p->payload.count = 0;
+    p->payload.proto_version = 0;
 
     data.temperature = 0xff;
     data.humidity = 0xff;
@@ -108,11 +110,13 @@ void main_dht11(void) {
 
         lcdClear();
         lcdRefresh();
-        pl->id++;
+        pl->count++;
         pl->dht11_status = res;
         pl->temperature = data.temperature;
         pl->humidity = data.humidity;
         pl->voltage = GetVoltage();
+
+        // TODO: HMAC or similar
 
         p->ip.ipid[0] = ipid >> 8;
         p->ip.ipid[1] = ipid & 0xff;
@@ -134,8 +138,8 @@ void main_dht11(void) {
 
         lcdClear();
 
-        lcdPrint("Id: ");
-        lcdPrintInt(pl->id);
+        lcdPrint("cnt: ");
+        lcdPrintInt(pl->count);
         lcdNl();
 
         lcdPrint("Status: ");
