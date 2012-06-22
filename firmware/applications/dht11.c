@@ -108,8 +108,6 @@ void main_dht11(void) {
         lcdRefresh();
         res = dht11_read(&data);
 
-        lcdClear();
-        lcdRefresh();
         pl->count++;
         pl->dht11_status = res;
         pl->temperature = data.temperature;
@@ -161,6 +159,6 @@ void main_dht11(void) {
         lcdPrint("mV");
 
         lcdRefresh();
-        delayms(500);
+        delayms(5000);
     }
 }
