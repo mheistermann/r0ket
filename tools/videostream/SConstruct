@@ -1,0 +1,15 @@
+
+#g++ -O2 -w -Wall -Wextra -pedantic -o sift sift.cc -I/usr/local/include/opencv -lcv -lhighgui
+
+env = Environment(
+    CC="clang++",
+    CCFLAGS="-O2 -w -Wall -Wextra -pedantic",
+    CPPPATH = "/usr/include/opencv",
+    LIBS = ["cv", "highgui"]
+    )
+
+sources = ["stream.cc"]
+
+env.Program(target="stream", source=sources)
+
+

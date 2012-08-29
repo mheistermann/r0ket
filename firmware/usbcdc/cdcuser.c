@@ -27,6 +27,7 @@
 #include "cdcuser.h"
 #include "usbreg.h"
 
+void (*Custom_CDC_BulkOut)() = 0;
 
 unsigned char BulkBufIn  [64];            // Buffer to store USB IN  packet
 unsigned char BulkBufOut [64];            // Buffer to store USB OUT packet
@@ -358,14 +359,20 @@ void CDC_BulkIn(void)
 } 
 
 
+
 /*----------------------------------------------------------------------------
   CDC_BulkOut call on DataOut Request
   Parameters:   none
   Return Value: none
  *---------------------------------------------------------------------------*/
-void CDC_BulkOut(void) 
-{
+
+void CDC_BulkOut(void) {
   int numBytesRead;
+
+  if (Custom_CDC_BulkOut) {
+    Custom_CDC_BulkOut();
+    return;
+  }
 
   // get data from USB into intermediate buffer
   numBytesRead = USB_ReadEP(CDC_DEP_OUT, &BulkBufOut[0]);
@@ -375,6 +382,8 @@ void CDC_BulkOut(void)
   // store data in a buffer to transmit it over serial interface
   CDC_WrOutBuf ((char *)&BulkBufOut[0], &numBytesRead);
 }
+
+
 
 
 /*----------------------------------------------------------------------------

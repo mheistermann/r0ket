@@ -19,6 +19,8 @@
 #ifndef __CDCUSER_H__
 #define __CDCUSER_H__
 
+extern void (*Custom_CDC_BulkOut)();
+
 /* CDC buffer handling */
 extern int CDC_RdOutBuf        (char *buffer, const int *length);
 extern int CDC_WrOutBuf        (const char *buffer, int *length);
