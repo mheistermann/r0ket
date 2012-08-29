@@ -1,3 +1,23 @@
+/*
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <mh at sponc dot de> wrote this file. As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return - Martin Heistermann
+ * ----------------------------------------------------------------------------
+ */
+
+/* This app is a simple sensor node. It gets temperature and humidity readings
+ * from an attach DHT11 sensor and sends a UDP packet with the sensor data
+ * to a server for further processing.
+ *
+ * IP "stack" is hand-rolled with fixed gateway and target for minimal memory
+ * requirements, uIP was too big.
+ *
+ * Missing features: signed/encrypted packets, packet acks (data is lost when
+ * the network is down for even a short time)
+ */
+
 #include <sysinit.h>
 #include <stdlib.h>
 #include <string.h>
